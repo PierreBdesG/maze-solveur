@@ -1,10 +1,7 @@
 import cv2
 import numpy as np
-import time
 import imutils
-from scipy import ndimage
 import math
-from scipy import stats
 import sys
 
 
@@ -26,8 +23,8 @@ class PathFinder:
 		children = {}
 		tested = []
 
-		start = time.time()
 
+		
 		while actual_pos != self.end_pos:
 			self.grid[actual_pos + (2,)] = self.grid_dim[0]*self.grid_dim[1]*2+1
 			tested.append(actual_pos)
