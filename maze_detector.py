@@ -223,7 +223,7 @@ DEL_SAME_POINT = 30
 past_entry_point = (0, 0)
 past_exit_point = (0, 0)
 
-cap = cv2.VideoCapture('/Users/pierrebrault/Desktop/maze/maze_fin2.mov')
+cap = cv2.VideoCapture('path/to/your/video.mov')
 length_cap = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 ret, frame = cap.read()
 
@@ -233,11 +233,9 @@ past_solution = None
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-out = cv2.VideoWriter('maze_solve.mov', fourcc, 24, (frame.shape[1], frame.shape[0]))
+out = cv2.VideoWriter('name_of_the_solution.mov', fourcc, 24, (frame.shape[1], frame.shape[0]))
 
-count = 0
 while cap.isOpened:
-	count += 1 
 	sys.stdout.write('\r loading ' + str((np.round(count*100/length_cap, 1))) + ' %')
 	sys.stdout.flush()    
 	
@@ -340,16 +338,7 @@ while cap.isOpened:
 	if not maze:
 		frame = cv2.putText(frame, 'no maze detected', (50, 50), font, 2,(0,0,255), 5)
 
-	# if count > 50:
-	# 	break
-
-
 	out.write(frame)
-
-
-
-
-
 
 out.release()
 
